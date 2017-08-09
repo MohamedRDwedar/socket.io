@@ -1,5 +1,5 @@
 {
-  "name": "socket.io",
+  "name": "chat-socket.io",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "socket.io": "^2.0.3"
   }
 }
