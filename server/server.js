@@ -11,10 +11,27 @@ const io = socketIO(server);
 
 io.on('connection', (socket) => {
     console.log('new user connected');
-    
+
     socket.on('disconnect', () => {
         console.log('client disconnected from server');
     });
+
+    socket.emit('newEmail', {
+        from: 'mohamed refat',
+        text: 'hi whats going on',
+        createdAt: 123
+    });
+
+    socket.emit('newMessage', {
+        from: 'waleed hassan',
+        text: 'hi whats going on',
+        createdAt: 123
+    });
+
+    socket.on('createEmail', (newEmail) => {
+        console.log('createEmail', newEmail);
+    });
+
 });
 
 app.use(express.static(publishPath));
