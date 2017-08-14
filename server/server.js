@@ -12,6 +12,18 @@ const io = socketIO(server);
 io.on('connection', (socket) => {
     console.log('new user connected');
 
+    socket.emit('welcomeChat', {
+        from: 'admin',
+        text: 'welcome to the chat',
+        createdAt: new Date().getTime()
+    });
+
+    socket.broadcast.emit('userJoined', {
+        from: 'admin',
+        text: 'new user joined to the chat',
+        createdAt: new Date().getTime()
+    });
+
     socket.on('disconnect', () => {
         console.log('client disconnected from server');
     });
@@ -23,6 +35,12 @@ io.on('connection', (socket) => {
             text: message.text,
             createdAt: new Date().getDate()
         });
+
+        // socket.broadcast.emit('createMessage', {
+        //     from: message.from,
+        //     text: message.text,
+        //     createdAt: new Date().getTime()
+        // });
     });
 
 });
