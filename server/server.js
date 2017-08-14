@@ -16,20 +16,13 @@ io.on('connection', (socket) => {
         console.log('client disconnected from server');
     });
 
-    socket.emit('newEmail', {
-        from: 'mohamed refat',
-        text: 'hi whats going on',
-        createdAt: 123
-    });
-
-    socket.emit('newMessage', {
-        from: 'waleed hassan',
-        text: 'hi whats going on',
-        createdAt: 123
-    });
-
-    socket.on('createEmail', (newEmail) => {
-        console.log('createEmail', newEmail);
+    socket.on('createMessage', function (message) {
+        console.log('New Message', message);
+        io.emit('createMessage', {
+            from: message.from,
+            text: message.text,
+            createdAt: new Date().getDate()
+        });
     });
 
 });
